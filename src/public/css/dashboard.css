@@ -1,0 +1,517 @@
+/* ─── CSS-переменные (тема) ────────────────────────────────────────────────── */
+:root {
+  --bg:         #f5f7fa;
+  --surface:    #ffffff;
+  --border:     #e0e5ee;
+  --text:       #1f2d40;
+  --text-muted: #6b7a8d;
+  --primary:    #2fc6f6;
+  --primary-dk: #00aae3;
+  --green:      #5fd67a;
+  --orange:     #ff8c00;
+  --blue:       #5b9cf6;
+  --radius:     12px;
+  --shadow:     0 2px 12px rgba(0,0,0,0.07);
+  --transition: 0.2s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ─── Header ──────────────────────────────────────────────────────────────── */
+.app-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-icon { font-size: 22px; }
+
+.header-title h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.header-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+/* ─── Main ────────────────────────────────────────────────────────────────── */
+.app-main {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ─── Cards ───────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ─── Summary cards ───────────────────────────────────────────────────────── */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+
+.stat-value.stat-green  { color: #2da84a; }
+.stat-value.stat-blue   { color: #2271d1; }
+.stat-value.stat-orange { color: var(--orange); }
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* ─── Chart card ──────────────────────────────────────────────────────────── */
+.chart-card { padding: 24px; }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.card-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.date-input {
+  appearance: none;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.date-input:focus { outline: none; border-color: var(--primary); }
+
+.date-sep { color: var(--text-muted); font-size: 14px; }
+
+.brand-select {
+  margin-top: 25px;
+  appearance: none;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 28px 6px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7a8d' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.brand-select:focus { outline: none; border-color: var(--primary); }
+
+/* ─── Chart body ──────────────────────────────────────────────────────────── */
+.chart-body {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.chart-container {
+  width: 380px;
+  height: 380px;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.chart-legend-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.legend-cost-header {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background var(--transition);
+}
+
+.legend-item:hover { background: var(--bg); }
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.legend-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  width: 150px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.legend-pct {
+  font-size: 11px;
+  color: var(--text-muted);
+  min-width: 36px;
+  text-align: right;
+}
+
+.chart-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 48px 0;
+  font-size: 14px;
+}
+
+/* ─── Button ──────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition);
+  border: 1px solid transparent;
+}
+
+.btn-refresh { background: var(--bg); border-color: var(--border); color: var(--text); }
+.btn-refresh:hover { background: #e8ecf2; }
+
+.refresh-icon { font-size: 16px; display: inline-block; transition: transform 0.4s; }
+.btn-refresh.spinning .refresh-icon { animation: spin 0.6s linear infinite; }
+
+/* ─── Loading skeleton ────────────────────────────────────────────────────── */
+.loading .stat-value,
+.loading .stat-label {
+  background: linear-gradient(90deg, #eef0f3 25%, #e0e3e8 50%, #eef0f3 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.3s infinite;
+  border-radius: 4px;
+  color: transparent;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Global loader ───────────────────────────────────────────────────────── */
+.global-loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 999;
+}
+
+.global-loader p { color: var(--text-muted); font-size: 14px; }
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hidden { display: none !important; }
+
+/* ─── Table ───────────────────────────────────────────────────────────────── */
+.cars-card { padding: 24px; }
+
+.table-wrap { overflow-x: auto; }
+
+.cars-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.cars-table thead tr { border-bottom: 2px solid var(--border); }
+
+.cars-table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.cars-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.cars-table tbody tr:last-child td { border-bottom: none; }
+.cars-table tbody tr:hover td { background: var(--bg); }
+
+.col-num    { width: 1%; white-space: nowrap; color: var(--text-muted); }
+.col-plate  { width: 1%; white-space: nowrap; }
+.col-brand  { white-space: nowrap; color: var(--text-muted); font-size: 12px; }
+.col-cost   { width: 1%; white-space: nowrap; text-align: right; font-weight: 600; }
+.cars-table th.col-cost { text-align: right; }
+
+.car-number { font-weight: 500; font-size: 14px; color: var(--text); }
+.car-link   { color: var(--primary-dk); text-decoration: none; }
+.car-link:hover { text-decoration: underline; }
+
+.work-tags  { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.work-tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #edf2ff;
+  color: #3b5bdb;
+}
+
+.work-items { font-weight: 400; color: #5c7cfa; font-size: 11px; }
+
+.table-total td {
+  padding: 12px 14px;
+  border-top: 2px solid var(--border);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.table-placeholder td,
+.table-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 32px 0;
+  font-size: 14px;
+}
+
+/* ─── Monthly bar chart ───────────────────────────────────────────────────── */
+.monthly-chart-wrap { height: 320px; position: relative; }
+
+.monthly-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.month-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e8f7fd;
+  color: #00aae3;
+  border: 1px solid #b8e8f8;
+  border-radius: 20px;
+  padding: 3px 10px 3px 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge-reset {
+  background: none;
+  border: none;
+  color: #00aae3;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+  opacity: 0.7;
+  transition: opacity var(--transition);
+}
+
+.badge-reset:hover { opacity: 1; }
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+
+/* 1920px — большой монитор */
+@media (min-width: 1920px) {
+  .header-inner,
+  .app-main { max-width: 1800px; padding-left: 48px; padding-right: 48px; }
+  .chart-container { width: 460px; height: 460px; }
+  .stat-value { font-size: 32px; }
+  .chart-body { gap: 80px; }
+}
+
+/* ≤1500px — ноутбук */
+@media (max-width: 1500px) {
+  .header-inner,
+  .app-main { padding-left: 20px; padding-right: 20px; }
+  .chart-container { width: 320px; height: 320px; }
+  .legend-value { width: 120px; }
+}
+
+/* ≤990px — маленький ноутбук / планшет landscape */
+@media (max-width: 990px) {
+  .app-main { padding: 16px 20px; gap: 16px; }
+  .card-header { flex-wrap: wrap; gap: 12px; }
+  .card-controls { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .brand-select { margin-top: 0; }
+  .chart-body { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .chart-container { width: 100%; max-width: 400px; height: 320px; margin: 0 auto; }
+  .chart-legend-wrap { width: 100%; }
+  .legend-value { width: auto; min-width: 100px; }
+}
+
+/* ≤768px — планшет portrait */
+@media (max-width: 768px) {
+  .header-inner { padding: 12px 16px; }
+  .app-main { padding: 12px 16px; gap: 12px; }
+  .header-subtitle { display: none; }
+  .summary-cards { grid-template-columns: repeat(2, 1fr); }
+  .stat-value { font-size: 24px; }
+  .chart-container { max-width: 340px; height: 280px; }
+  .card-title { font-size: 14px; }
+}
+
+/* ≤480px — мобильный */
+@media (max-width: 480px) {
+  .header-inner { padding: 10px 12px; }
+  .app-main { padding: 10px 12px; gap: 10px; }
+  .header-icon { font-size: 18px; }
+  .header-title h1 { font-size: 16px; }
+  .summary-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat-card { padding: 14px 16px; }
+  .stat-value { font-size: 20px; }
+  .chart-container { max-width: 260px; height: 240px; }
+  .chart-body { gap: 16px; }
+  .legend-name { font-size: 12px; }
+  .legend-value { font-size: 12px; }
+  .col-num { display: none; }
+  .cars-table th, .cars-table td { padding: 10px 8px; }
+  .cars-table { font-size: 12px; }
+  .car-number { font-size: 12px; }
+  .work-tag { font-size: 11px; padding: 2px 7px; }
+  .col-cost { font-size: 12px; }
+}

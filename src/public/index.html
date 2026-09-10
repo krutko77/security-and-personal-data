@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дашборд — НАЗВАНИЕ</title><!-- ЗАМЕНИ: название вкладки -->
+  <link rel="stylesheet" href="css/dashboard.css?v=1">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="header-title">
+          <span class="header-icon">📊</span><!-- ЗАМЕНИ: эмодзи -->
+          <h1>Название дашборда</h1><!-- ЗАМЕНИ -->
+          <span class="header-subtitle">Компания — описание</span><!-- ЗАМЕНИ -->
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-refresh" id="btnRefresh">
+            <span class="refresh-icon">↻</span> Обновить
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+
+      <!-- ─── Сводные карточки ────────────────────────────────────────── -->
+      <section class="summary-cards" id="summaryCards">
+        <div class="card stat-card loading">
+          <div class="stat-value" id="statTotal">—</div>
+          <div class="stat-label">Всего записей</div><!-- ЗАМЕНИ -->
+        </div>
+        <div class="card stat-card loading">
+          <div class="stat-value stat-blue" id="statUniqueItems">—</div>
+          <div class="stat-label">Уникальных объектов</div><!-- ЗАМЕНИ -->
+        </div>
+        <div class="card stat-card loading">
+          <div class="stat-value stat-orange" id="statTotalAmount">—</div>
+          <div class="stat-label">Итого, ₽</div><!-- ЗАМЕНИ -->
+        </div>
+        <div class="card stat-card loading">
+          <div class="stat-value" id="statAvgAmount">—</div>
+          <div class="stat-label">Среднее, ₽</div><!-- ЗАМЕНИ -->
+        </div>
+      </section>
+
+      <!-- ─── Круговая диаграмма по категориям ───────────────────────── -->
+      <section class="charts-section">
+        <div class="card chart-card">
+          <div class="card-header">
+            <h2 class="card-title">По категориям</h2><!-- ЗАМЕНИ -->
+            <div class="card-controls">
+              <div class="date-range">
+                <label class="date-label">С <input type="date" id="dateFrom" class="date-input"></label>
+                <span class="date-sep">—</span>
+                <label class="date-label">По <input type="date" id="dateTo" class="date-input"></label>
+              </div>
+              <!-- ЗАМЕНИ options: значения из поля FILTER_KEY твоего смарт-процесса -->
+              <select id="categorySelect" class="brand-select">
+                <option value="">Все</option>
+                <option value="ENUM_ID_1">Значение 1</option>
+                <option value="ENUM_ID_2">Значение 2</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart-body">
+            <div class="chart-container">
+              <canvas id="categoryChart"></canvas>
+            </div>
+            <div class="chart-legend-wrap">
+              <div class="legend-cost-header">Сумма, ₽</div><!-- ЗАМЕНИ единицу -->
+              <div class="chart-legend" id="chartLegend"></div>
+            </div>
+          </div>
+          <div class="chart-empty hidden" id="chartEmpty">
+            Нет данных за выбранный период
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── Таблица по объектам ─────────────────────────────────────── -->
+      <section class="cars-section">
+        <div class="card cars-card">
+          <div class="card-header">
+            <h2 class="card-title">По объектам</h2><!-- ЗАМЕНИ -->
+          </div>
+          <div class="table-wrap">
+            <table class="cars-table" id="itemsTable">
+              <thead>
+                <tr>
+                  <th class="col-num">#</th>
+                  <th class="col-plate">Объект</th><!-- ЗАМЕНИ -->
+                  <th class="col-brand">Категория</th><!-- ЗАМЕНИ -->
+                  <th>Детализация</th><!-- ЗАМЕНИ -->
+                  <th class="col-cost">Сумма, ₽</th><!-- ЗАМЕНИ -->
+                </tr>
+              </thead>
+              <tbody id="itemsTableBody">
+                <tr class="table-placeholder"><td colspan="5">Загрузка…</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-empty hidden" id="itemsEmpty">Нет данных за выбранный период</div>
+        </div>
+      </section>
+
+      <!-- ─── Гистограмма по месяцам ──────────────────────────────────── -->
+      <section class="monthly-section">
+        <div class="card chart-card">
+          <div class="card-header">
+            <div class="monthly-title-wrap">
+              <h2 class="card-title">По месяцам, ₽</h2><!-- ЗАМЕНИ единицу -->
+              <span id="monthFilterBadge"></span>
+            </div>
+            <div class="card-controls">
+              <select id="yearSelect" class="brand-select"></select>
+            </div>
+          </div>
+          <div class="monthly-chart-wrap">
+            <canvas id="monthlyChart"></canvas>
+          </div>
+          <div class="chart-empty hidden" id="monthlyEmpty">Нет данных за выбранный год</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="global-loader hidden" id="globalLoader">
+    <div class="spinner"></div>
+    <p>Загрузка данных…</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="js/app.js?v=1" type="module"></script>
+</body>
+</html>
